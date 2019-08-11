@@ -1,13 +1,21 @@
 package br.com.labs.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Livro {
 
 	@Id
@@ -21,6 +29,13 @@ public class Livro {
 	private int quantidadeDePaginas;
 
 	private BigDecimal preco;
+
+	@CreatedBy
+	@ManyToOne
+	private Usuario createdBy;
+
+	@CreatedDate
+	private LocalDateTime createdAt;
 
 	public Integer getId() {
 		return id;
@@ -60,6 +75,22 @@ public class Livro {
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
+	}
+
+	public Usuario getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(Usuario createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
 	}
 
 }
