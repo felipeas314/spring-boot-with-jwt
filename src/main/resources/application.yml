@@ -8,5 +8,5 @@ spring:
     hibernate:
       ddl-auto: update
 jwt:
-  expiration:
-  secret:
+  expiration: 86400000
+  secret: j#G1k2*m7N#3CC&1

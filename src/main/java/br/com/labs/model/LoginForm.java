@@ -24,6 +24,7 @@ public class LoginForm {
 	}
 
 	public UsernamePasswordAuthenticationToken converter() {
+		System.out.println("2");
 		return new UsernamePasswordAuthenticationToken(email, senha);
 	}
 }
