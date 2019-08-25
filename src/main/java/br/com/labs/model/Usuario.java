@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,11 +25,20 @@ public class Usuario implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
+	@NotNull
+	@NotBlank
+	@Column(length = 50, nullable = false)
 	private String nome;
-	
+
+	@NotNull
+	@NotBlank
+	@Column(length = 50, nullable = false, unique = true)
 	private String email;
-	
+
+	@NotNull
+	@NotBlank
+	@Column(nullable = false)
 	private String senha;
 
 	@ManyToMany(fetch = FetchType.EAGER)
